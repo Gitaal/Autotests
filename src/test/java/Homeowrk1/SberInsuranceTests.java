@@ -45,8 +45,8 @@ public class SberInsuranceTests {
         Actions actions = new Actions(driver);
         //Выполняем наведение курсора мыши на элемент, в выпадающем меню нажимаем на элемент
         Wait<WebDriver> wait = new WebDriverWait(driver,10,1000);
-        WebElement mainElement=driver.findElement(By.xpath("(//span[@class='multiline'])[5]"));
-        WebElement subElement=driver.findElement(By.xpath("(//a[@class='kit-link kit-link_color_black alt-menu-list__link alt-menu-list__link_level_1'])[36]"));
+        WebElement mainElement=driver.findElement(By.xpath("//*[contains(text(),'Застраховать')]"));
+        WebElement subElement=driver.findElement(By.xpath("//*[contains(text(),'Страхование путешественников')]"));
 
         wait.until(ExpectedConditions.visibilityOf(mainElement));
         actions.moveToElement(mainElement).perform();
@@ -61,12 +61,14 @@ public class SberInsuranceTests {
 
         wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//img[contains(@src,'id=f6c836e1-5c5c-4367-b0d0-bbfb96be9c53')]")))).click();
 
+
         //6. На вкладке – Выбор полиса  выбрать сумму страховой защиты – Минимальная
         //переключение между вкладками
         ArrayList<String> tabs2 = new ArrayList<String>(driver.getWindowHandles());
         driver.switchTo().window(tabs2.get(1));
 
         wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//div[@class='b-form-box-title ng-binding'][text()='Минимальная']")))).click();
+
 
         //7. Нажать Оформить
         wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//span[contains(text(),'Оформить')]")))).click();
