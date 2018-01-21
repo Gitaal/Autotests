@@ -66,6 +66,12 @@ public class SberInsuranceTests {
         //переключение между вкладками
         ArrayList<String> tabs2 = new ArrayList<String>(driver.getWindowHandles());
         driver.switchTo().window(tabs2.get(1));
+        //Вариант для общего развития
+        /*
+        for(String winHandle : driver.getWindowHandles()){
+            driver.switchTo().window(winHandle);
+        }*/
+
 
         wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//div[@class='b-form-box-title ng-binding'][text()='Минимальная']")))).click();
 
