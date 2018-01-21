@@ -1,5 +1,6 @@
 package pages;
 
+        import org.junit.Assert;
         import org.openqa.selenium.By;
         import org.openqa.selenium.WebDriver;
         import org.openqa.selenium.WebElement;
@@ -53,6 +54,9 @@ public class RegistrationPage {
     @FindBy(xpath = "//span[text()='Продолжить']")
     WebElement nextReg;
 
+    @FindBy(xpath="//div[@ng-show='tryNext && myForm.$invalid'][text()='Заполнены не все обязательные поля']")
+    WebElement errorMassage;
+
     public RegistrationPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
       // (new WebDriverWait(driver,10)).until(ExpectedConditions.visibilityOf(title));
@@ -63,6 +67,9 @@ public class RegistrationPage {
 
     public void clickButton(){
         nextReg.click();
+            }
+    public void checkMassegeError(){
+        Assert.assertEquals("Отсутствует сообщение об ошибке","Заполнены не все обязательные поля",errorMassage.getText());
     }
 
     public void filledData(String fieldName, String value){
@@ -114,5 +121,45 @@ public class RegistrationPage {
         element.sendKeys(value);//заполнение
     }
 
+    public void checkField(String checkFieldName) {
+        switch (checkFieldName) {
+            case "Фамилия застрахованного":
+                Assert.assertEquals("Неверно заполнено поле","IVANOV",insuredSurname.getAttribute("value") );
+                break;
+            case "Имя застрахованного":
+                Assert.assertEquals("Неверно заполнено поле","LEV",insuredName.getAttribute("value"));
+                break;
+            case "Дата рождения застрахованного":
+                Assert.assertEquals("Неверно заполнено поле","01.01.2011", insuredBirthDate.getAttribute("value"));
+                break;
+            case "Фамилия страхователя":
+                Assert.assertEquals("Неверно заполнено поле","Иванова", surname.getAttribute("value"));
+                break;
+            case "Имя страхователя":
+                Assert.assertEquals("Неверно заполнено поле","Елена", name.getAttribute("value"));
+                break;
+            case "Отчество страхователя":
+                Assert.assertEquals("Неверно заполнено поле","Петровна", middlename.getAttribute("value"));
+                break;
+            case "Дата рождения страхователя":
+                Assert.assertEquals("Неверно заполнено поле","02.02.1984", birthDate.getAttribute("value"));
+                break;
+            case "Серия паспорта":
+                Assert.assertEquals("Неверно заполнено поле","1234", passportSeries.getAttribute("value"));
+                break;
+            case "Номер паспорта":
+                Assert.assertEquals("Неверно заполнено поле","567890", passportNumber.getAttribute("value"));
+                break;
+            case "Дата выдачи паспорта":
+                Assert.assertEquals("Неверно заполнено поле","12.02.2010", issueDate.getAttribute("value"));
+                break;
+            case "Кем выдан":
+                Assert.assertEquals("Неверно заполнено поле","Отделением ОВД по г. Москва", issuePlace.getAttribute("value"));
+                break;
+            default: throw new AssertionError("Поле '"+checkFieldName+"' не объявлено на странице");
+        }
+
+
+    }
 }
 

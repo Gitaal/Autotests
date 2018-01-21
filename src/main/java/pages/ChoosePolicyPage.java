@@ -1,5 +1,6 @@
 package pages;
 
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -22,6 +23,8 @@ public class ChoosePolicyPage {
     @FindBy(xpath = "//span[contains(text(),'Оформить')]")
     public WebElement formalizeButton;
 
+
+
     public ChoosePolicyPage (WebDriver driver){
         PageFactory.initElements(driver,this);
 
@@ -29,5 +32,8 @@ public class ChoosePolicyPage {
         wait.until(ExpectedConditions.visibilityOf(minSum));
         wait.until(ExpectedConditions.visibilityOf(formalizeButton));
     }
+
+
+
 
 }
