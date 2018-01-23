@@ -1,14 +1,17 @@
 package pages;
 
-        import org.junit.Assert;
-        import org.openqa.selenium.By;
-        import org.openqa.selenium.WebDriver;
-        import org.openqa.selenium.WebElement;
-        import org.openqa.selenium.support.FindBy;
-        import org.openqa.selenium.support.PageFactory;
-        import org.openqa.selenium.support.ui.ExpectedConditions;
-        import org.openqa.selenium.support.ui.Wait;
-        import org.openqa.selenium.support.ui.WebDriverWait;
+import org.junit.Assert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by OWL on 21.01.2018.
@@ -54,69 +57,72 @@ public class RegistrationPage {
     @FindBy(xpath = "//span[text()='Продолжить']")
     WebElement nextReg;
 
-    @FindBy(xpath="//div[@ng-show='tryNext && myForm.$invalid'][text()='Заполнены не все обязательные поля']")
+    @FindBy(xpath = "//div[@ng-show='tryNext && myForm.$invalid'][text()='Заполнены не все обязательные поля']")
     WebElement errorMassage;
 
     public RegistrationPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
-      // (new WebDriverWait(driver,10)).until(ExpectedConditions.visibilityOf(title));
-        Wait<WebDriver> wait = new WebDriverWait(driver,10,1000);
+        // (new WebDriverWait(driver,10)).until(ExpectedConditions.visibilityOf(title));
+        Wait<WebDriver> wait = new WebDriverWait(driver, 10, 1000);
         wait.until(ExpectedConditions.visibilityOf(birthDate));
         wait.until(ExpectedConditions.visibilityOf(nextReg));
-            }
-
-    public void clickButton(){
-        nextReg.click();
-            }
-    public void checkMassegeError(){
-        Assert.assertEquals("Отсутствует сообщение об ошибке","Заполнены не все обязательные поля",errorMassage.getText());
     }
 
-    public void filledData(String fieldName, String value){
+    public void clickButton() {
+        nextReg.click();
+    }
+
+    public void checkMassegeError() {
+        assertEquals("Отсутствует сообщение об ошибке", "Заполнены не все обязательные поля", errorMassage.getText());
+    }
+
+    public void filledData(String fieldName, String value) {
         switch (fieldName) {
             case "Фамилия застрахованного":
-                filledData(insuredSurname,value);
+                filledData(insuredSurname, value);
                 break;
             case "Имя застрахованного":
-                filledData(insuredName,value);
+                filledData(insuredName, value);
                 break;
             case "Дата рождения застрахованного":
-                filledData(insuredBirthDate,value);
+                filledData(insuredBirthDate, value);
                 break;
             case "Фамилия страхователя":
-                filledData(surname,value);
+                filledData(surname, value);
                 break;
             case "Имя страхователя":
-                filledData(name,value);
+                filledData(name, value);
                 break;
             case "Отчество страхователя":
-                filledData(middlename,value);
+                filledData(middlename, value);
                 break;
             case "Дата рождения страхователя":
                 birthDate.click();
-                filledData(birthDate,value);
+                filledData(birthDate, value);
                 break;
             case "Пол страхователя":
                 female.click();
                 break;
             case "Серия паспорта":
-                filledData(passportSeries,value);
+                filledData(passportSeries, value);
                 break;
             case "Номер паспорта":
-                filledData(passportNumber,value);
+                filledData(passportNumber, value);
                 break;
             case "Дата выдачи паспорта":
-                filledData(issueDate,value);
+                filledData(issueDate, value);
                 break;
             case "Кем выдан":
-                filledData(issuePlace,value);
+                filledData(issuePlace, value);
                 break;
-            default: throw new AssertionError("Поле '"+fieldName+"' не объявлено на странице");
+            default:
+                throw new AssertionError("Поле '" + fieldName + "' не объявлено на странице");
 
-                    }
+        }
     }
+
     //Метод для заполнения полей
-    public void filledData(WebElement element, String value){
+    public void filledData(WebElement element, String value) {
         element.clear();//очищаем поле перед заполнением
         element.sendKeys(value);//заполнение
     }
@@ -124,39 +130,43 @@ public class RegistrationPage {
     public void checkField(String checkFieldName) {
         switch (checkFieldName) {
             case "Фамилия застрахованного":
-                Assert.assertEquals("Неверно заполнено поле","IVANOV",insuredSurname.getAttribute("value") );
+                assertEquals("Неверно заполнено поле", "IVANOV", insuredSurname.getAttribute("value"));
                 break;
             case "Имя застрахованного":
-                Assert.assertEquals("Неверно заполнено поле","LEV",insuredName.getAttribute("value"));
+                assertEquals("Неверно заполнено поле", "LEV", insuredName.getAttribute("value"));
                 break;
             case "Дата рождения застрахованного":
-                Assert.assertEquals("Неверно заполнено поле","01.01.2011", insuredBirthDate.getAttribute("value"));
+                assertEquals("Неверно заполнено поле", "01.01.2011", insuredBirthDate.getAttribute("value"));
                 break;
             case "Фамилия страхователя":
-                Assert.assertEquals("Неверно заполнено поле","Иванова", surname.getAttribute("value"));
+                assertEquals("Неверно заполнено поле", "Иванова", surname.getAttribute("value"));
                 break;
             case "Имя страхователя":
-                Assert.assertEquals("Неверно заполнено поле","Елена", name.getAttribute("value"));
+                assertEquals("Неверно заполнено поле", "Елена", name.getAttribute("value"));
                 break;
             case "Отчество страхователя":
-                Assert.assertEquals("Неверно заполнено поле","Петровна", middlename.getAttribute("value"));
+                assertEquals("Неверно заполнено поле", "Петровна", middlename.getAttribute("value"));
                 break;
             case "Дата рождения страхователя":
-                Assert.assertEquals("Неверно заполнено поле","02.02.1984", birthDate.getAttribute("value"));
+                assertEquals("Неверно заполнено поле", "02.02.1984", birthDate.getAttribute("value"));
+                break;
+            case "Пол страхователя":
+                assertTrue("Неверно заполнен пол", female.isSelected());
                 break;
             case "Серия паспорта":
-                Assert.assertEquals("Неверно заполнено поле","1234", passportSeries.getAttribute("value"));
+                assertEquals("Неверно заполнено поле", "1234", passportSeries.getAttribute("value"));
                 break;
             case "Номер паспорта":
-                Assert.assertEquals("Неверно заполнено поле","567890", passportNumber.getAttribute("value"));
+                assertEquals("Неверно заполнено поле", "567890", passportNumber.getAttribute("value"));
                 break;
             case "Дата выдачи паспорта":
-                Assert.assertEquals("Неверно заполнено поле","12.02.2010", issueDate.getAttribute("value"));
+                assertEquals("Неверно заполнено поле", "12.02.2010", issueDate.getAttribute("value"));
                 break;
             case "Кем выдан":
-                Assert.assertEquals("Неверно заполнено поле","Отделением ОВД по г. Москва", issuePlace.getAttribute("value"));
+                assertEquals("Неверно заполнено поле", "Отделением ОВД по г. Москва", issuePlace.getAttribute("value"));
                 break;
-            default: throw new AssertionError("Поле '"+checkFieldName+"' не объявлено на странице");
+            default:
+                throw new AssertionError("Поле '" + checkFieldName + "' не объявлено на странице");
         }
 
 

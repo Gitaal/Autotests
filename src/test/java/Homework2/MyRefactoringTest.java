@@ -49,7 +49,7 @@ public class MyRefactoringTest extends BaseTest {
         registrationPage.filledData("Имя страхователя", "Елена");
         registrationPage.filledData("Отчество страхователя", "Петровна");
         registrationPage.filledData("Дата рождения страхователя", "02021984");
-        registrationPage.filledData("Пол страхователя", "");
+        registrationPage.filledData("Пол страхователя","");
         registrationPage.filledData("Серия паспорта", "1234");
         registrationPage.filledData("Номер паспорта", "567890");
         registrationPage.filledData("Дата выдачи паспорта", "12022010");
@@ -63,6 +63,7 @@ public class MyRefactoringTest extends BaseTest {
         checkField.checkField("Имя страхователя");
         checkField.checkField("Отчество страхователя");
         checkField.checkField("Дата рождения страхователя");
+        checkField.checkField("Пол страхователя");
         checkField.checkField("Серия паспорта");
         checkField.checkField("Номер паспорта");
         checkField.checkField("Дата выдачи паспорта");

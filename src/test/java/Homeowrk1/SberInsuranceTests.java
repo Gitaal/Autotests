@@ -17,6 +17,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
+import static org.junit.Assert.*;
+
 /**
  * Created by OWL on 19.01.2018.
  */
@@ -55,7 +57,7 @@ public class SberInsuranceTests {
 
         //4. Проверить наличие на странице заголовка – Страхование путешественников
         WebElement elementTitle = driver.findElement(By.xpath("//h1[text()='Страхование путешественников']"));
-        Assert.assertEquals("Отсутствует заголовок Страхование путешественников","Страхование путешественников",elementTitle.getText());
+        assertEquals("Отсутствует заголовок Страхование путешественников","Страхование путешественников",elementTitle.getText());
 
         //5. Нажать на – Оформить Онлайн
 
@@ -100,18 +102,19 @@ public class SberInsuranceTests {
         filledData(By.name("issuePlace"),"Отделением ОВД по г. Москва");
 
         //9.       Проверить, что все поля заполнены правильно
-        Assert.assertEquals("Неверно заполнено поле","IVANOV", driver.findElement(By.name("insured0_surname")).getAttribute("value"));
-        Assert.assertEquals("Неверно заполнено поле","LEV", driver.findElement(By.name("insured0_name")).getAttribute("value"));
-        Assert.assertEquals("Неверно заполнено поле","01.01.2011", driver.findElement(By.name("insured0_birthDate")).getAttribute("value"));
-        Assert.assertEquals("Неверно заполнено поле","Иванова", driver.findElement(By.name("surname")).getAttribute("value"));
-        Assert.assertEquals("Неверно заполнено поле","Елена", driver.findElement(By.name("name")).getAttribute("value"));
-        Assert.assertEquals("Неверно заполнено поле","Петровна", driver.findElement(By.name("middlename")).getAttribute("value"));
-
-        Assert.assertEquals("Неверно заполнено поле","02.02.1984", driver.findElement(By.name("birthDate")).getAttribute("value"));
-        Assert.assertEquals("Неверно заполнено поле","1234", driver.findElement(By.name("passport_series")).getAttribute("value"));
-        Assert.assertEquals("Неверно заполнено поле","567890", driver.findElement(By.name("passport_number")).getAttribute("value"));
-        //Assert.assertEquals("Неверно заполнено поле","12.02.2010", driver.findElement(By.name("issueDate")).getAttribute("value"));
-        Assert.assertEquals("Неверно заполнено поле","Отделением ОВД по г. Москва", driver.findElement(By.name("issuePlace")).getAttribute("value"));
+        assertEquals("Неверно заполнено поле","IVANOV", driver.findElement(By.name("insured0_surname")).getAttribute("value"));
+        assertEquals("Неверно заполнено поле","LEV", driver.findElement(By.name("insured0_name")).getAttribute("value"));
+        assertEquals("Неверно заполнено поле","01.01.2011", driver.findElement(By.name("insured0_birthDate")).getAttribute("value"));
+        assertEquals("Неверно заполнено поле","Иванова", driver.findElement(By.name("surname")).getAttribute("value"));
+        assertEquals("Неверно заполнено поле","Елена", driver.findElement(By.name("name")).getAttribute("value"));
+        assertEquals("Неверно заполнено поле","Петровна", driver.findElement(By.name("middlename")).getAttribute("value"));
+        //Assert.assertEquals("Неверно заполнено поле пол", "0",driver.findElement(By.name("female")).getAttribute("value"));
+        assertTrue("Неверно заполнен пол",driver.findElement(By.name("female")).isSelected());
+        assertEquals("Неверно заполнено поле","02.02.1984", driver.findElement(By.name("birthDate")).getAttribute("value"));
+        assertEquals("Неверно заполнено поле","1234", driver.findElement(By.name("passport_series")).getAttribute("value"));
+        assertEquals("Неверно заполнено поле","567890", driver.findElement(By.name("passport_number")).getAttribute("value"));
+        assertEquals("Неверно заполнено поле","12.02.2010", driver.findElement(By.name("issueDate")).getAttribute("value"));
+        assertEquals("Неверно заполнено поле","Отделением ОВД по г. Москва", driver.findElement(By.name("issuePlace")).getAttribute("value"));
 
 
         //10.   Нажать продолжить
@@ -119,7 +122,7 @@ public class SberInsuranceTests {
 
         //11.   Проверить, что появилось сообщение - Заполнены не все обязательные поля
         WebElement errorMassage = driver.findElement(By.xpath("//div[@ng-show='tryNext && myForm.$invalid'][text()='Заполнены не все обязательные поля']"));
-        Assert.assertEquals("Отсутствует сообщение об ошибке","Заполнены не все обязательные поля",errorMassage.getText());
+        assertEquals("Отсутствует сообщение об ошибке","Заполнены не все обязательные поля",errorMassage.getText());
 
 
     }
@@ -130,9 +133,8 @@ public class SberInsuranceTests {
     driver.findElement(locator).sendKeys(value);//заполнение
     }
 
-    @After
+   @After
     public void afterTest() {
         driver.quit();//закрываем браузер
     }
-
 }

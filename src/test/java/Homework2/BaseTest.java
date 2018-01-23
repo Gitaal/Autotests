@@ -48,7 +48,7 @@ public class BaseTest {
     }
 
 
-  @AfterClass
+    @AfterClass
     public static void tearDown() throws Exception {
         driver.quit();
     }
@@ -63,7 +63,7 @@ public class BaseTest {
     }
 
 
-    protected void checkfilledData(String value, By locator){
-        Assert.assertEquals(value,driver.findElement(locator).getAttribute("value"));
+    protected void checkfilledData(String value, By locator) {
+        Assert.assertEquals(value, driver.findElement(locator).getAttribute("value"));
     }
 }
