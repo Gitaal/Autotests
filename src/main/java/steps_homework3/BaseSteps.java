@@ -1,4 +1,4 @@
-package steps;
+package steps_homework3;
 
 import org.junit.AfterClass;
 import org.junit.Assert;
@@ -7,13 +7,17 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import util.TestProperties;
+import util_homework3.TestProperties;
 
 import java.util.NoSuchElementException;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 public class BaseSteps {
+
+    public static WebDriver getDriver() {
+        return driver;
+    }
 
     protected static WebDriver driver;
     protected static String baseUrl;

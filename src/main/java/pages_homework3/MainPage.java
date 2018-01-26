@@ -1,4 +1,4 @@
-package pages;
+package pages_homework3;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -8,8 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.util.concurrent.TimeUnit;
+import steps_homework3.BaseSteps;
 
 /**
  * Created by OWL on 21.01.2018.
@@ -20,9 +19,8 @@ public class MainPage {
     WebElement mainMenuItem;
 
     @FindBy(xpath = "//li[5]//div[contains(@class,'list__item_level_1')]")
-    public WebElement subMenuItem;
+    WebElement subMenuItem;
 
-    //Выполняем инициализацию элементов
     public MainPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
     }
@@ -36,7 +34,5 @@ public class MainPage {
         wait.until(ExpectedConditions.visibilityOf(subMenuItem)).click();
     }
 
-    /*public void selectSubMenu() {
-        subMenuItem.findElement(By.xpath("//a[contains(@class,'link_level_1')][contains(text(),'" + menuItem + "')]")).click();
-           }*/
+
 }

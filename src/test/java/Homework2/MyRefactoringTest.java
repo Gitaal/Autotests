@@ -1,18 +1,12 @@
 package Homework2;
 
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Wait;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import pages.ChoosePolicyPage;
-import pages.MainPage;
-import pages.RegistrationPage;
-import pages.TravelInsurancePage;
-
-import java.util.ArrayList;
+import pages_homework2.ChoosePolicyPage;
+import pages_homework2.MainPage;
+import pages_homework2.RegistrationPage;
+import pages_homework2.TravelInsurancePage;
 
 /**
  * Created by OWL on 21.01.2018.
@@ -49,7 +43,7 @@ public class MyRefactoringTest extends BaseTest {
         registrationPage.filledData("Имя страхователя", "Елена");
         registrationPage.filledData("Отчество страхователя", "Петровна");
         registrationPage.filledData("Дата рождения страхователя", "02021984");
-        registrationPage.filledData("Пол страхователя","");
+        registrationPage.filledData("Пол страхователя", "");
         registrationPage.filledData("Серия паспорта", "1234");
         registrationPage.filledData("Номер паспорта", "567890");
         registrationPage.filledData("Дата выдачи паспорта", "12022010");
